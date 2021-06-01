@@ -73,6 +73,13 @@ void ans(){
     int b = 50;
     int c = a%b;
     cout << c << '\n';
+    int n;
+    cin >> n;
+    int arr[n];
+    forn(i, n){cin >> arr[i];}
+    cout << "This is just to check nothing serious" << '\n';
+    forn(i, n){cout<< arr[i] << " ";}
+    cout << '\n';
 }
 
 int main() {
