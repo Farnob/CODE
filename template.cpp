@@ -111,6 +111,10 @@ void mergeSort(int l, int r){
 
 void ans(){
 	cout << "HELLO WORLD!!"<<'\n';
+	int a = 5;
+	int b = 5;
+	cout << a + b;
+	cout << '\n';
 }
 
 int main() {
@@ -123,8 +127,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
+    int t = 1;
+    // cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
     while(t--){
         ans();
     }
