@@ -121,17 +121,15 @@ bool prime(int n)
     return true;
 }
 
-bool Square(int m){
-	int y = sqrt(m);
-	return y*y == m;
-}
+const int MOD=1e9+7;
 
 void ans(){
-	int n;
-	cin >> n;
-	if(n % 2 == 0 && Square(n / 2)){cout<<"YES\n";}
-	else if(n % 4 == 0 && Square(n/4)){cout<<"YES\n";}
-	else{cout << "NO\n";}
+	int n, k;
+	cin >> n >> k;
+	ll count = 1;
+	for(int i=0;i<k;i++)
+		count = (count * n) % MOD;
+	cout << count << '\n';
 }
 
 int main() {

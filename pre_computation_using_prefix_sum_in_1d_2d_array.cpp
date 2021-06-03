@@ -121,17 +121,60 @@ bool prime(int n)
     return true;
 }
 
-bool Square(int m){
-	int y = sqrt(m);
-	return y*y == m;
-}
+
+/*GIVEN ARRAY A OF N INTEGERS. GIVEN Q QUERIES AND IN EACH QUERY GIVEN L AND R PRINT SUM OF ARRAY ELEMENTS FROM INDEX L TO R(L, R INCLUDED);
+
+CONSTRAINTS:- 
+1 <= N <= 10^5
+1 <= ARR[I] <= 10^9
+1 <= Q <= 10^5
+1 <= L, R <= N
+
+*/
+
+const int Ni = 1e5+10;
+int a[Ni];
+int pref[Ni];
 
 void ans(){
-	int n;
+	//O(N) + O(Q*N) = 10 ^ 10
+	//NORMAL_VERSION:-
+
+	// int n;
+	// cin >> n;
+	// for(int i=1;i<=n;i++){cin >> a[i];}
+
+	// int q; 
+	// cin >> q;
+	// while(q--){
+	// 	int l, r;
+	// 	cin >> l >> r;
+	// 	ll sum = 0;
+	// 	for(int i=l;i<=r;i++){
+	// 		sum+=a[i];
+	// 	}
+	// 	cout << sum << '\n';
+	// }
+
+	//optimized version:- 
+
+	 int n;
 	cin >> n;
-	if(n % 2 == 0 && Square(n / 2)){cout<<"YES\n";}
-	else if(n % 4 == 0 && Square(n/4)){cout<<"YES\n";}
-	else{cout << "NO\n";}
+	for(int i=1;i<=n;i++){
+		cin >> a[i];
+		pref[i] = pref[i - 1]+a[i];
+		//N er loop;
+	}
+
+	int q; 
+	cin >> q;
+	while(q--){
+		int l, r;
+		cin >> l >> r;
+		cout << pref[r] - pref[l - 1]<<'\n';
+		//O(1) operation;
+	}
+	//O(N) + O(Q) = 10^5;
 }
 
 int main() {
@@ -144,8 +187,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
+    int t = 1;
+    // cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
     while(t--){
         ans();
     }

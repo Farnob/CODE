@@ -121,18 +121,11 @@ bool prime(int n)
     return true;
 }
 
-bool Square(int m){
-	int y = sqrt(m);
-	return y*y == m;
-}
+const int Ni = 1e3+10;
+int ar[Ni][Ni];
+ll pf[Ni][Ni];
 
-void ans(){
-	int n;
-	cin >> n;
-	if(n % 2 == 0 && Square(n / 2)){cout<<"YES\n";}
-	else if(n % 4 == 0 && Square(n/4)){cout<<"YES\n";}
-	else{cout << "NO\n";}
-}
+
 
 int main() {
 
@@ -144,11 +137,21 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
-    while(t--){
-        ans();
-    }
+    int n;
+	cin >> n;
+	for(int i=1;i<=n;i++){
+		for(int j= 1;j <= n;j++){
+			cin >> ar[i][j];
+			pf[i][j] = ar[i][j] + pf[i-1][j]+pf[i][j-1]-pf[i-1][j-1];
+		}
+	}
+	int q;
+	cin >> q;
+	while(q--){
+		int a, b, c, d;
+		cin >> a >> b >> c >> d;
+		cout << pf[c][d] - pf[a-1][d] - pf[c][b-1]+pf[a-1][b-1];
+	}
 
 	cerr << "\n\n\n\nTime: " << 1.0 * clock() /CLOCKS_PER_SEC << " s.";
 	return 0;
