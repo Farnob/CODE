@@ -56,7 +56,7 @@ template<class T> void print_(multiset<T> t){
 
 
 #ifndef ONLINE_JUDGE
-#define debug(x)cerr<<#x<<" ";print_(x);cerr<<'\n';
+#define debug(x)cerr<<#x<<" = ";print_(x);cerr<<'\n';
 #else
 #define debug(x)
 #endif
@@ -108,13 +108,65 @@ void mergeSort(int l, int r){
 	merge(l, r, mid);
 }
 
+//Prime_Num:-
+bool prime(int n)
+{
+    if(n<2)return false;
+    if(n<=3)return true;
+    if(n%2==0)return false;
+    for(int i=3;i*i<=n;i+=2)
+    {
+        if(n%i==0)return false;
+    }
+    return true;
+}
+
+// Function to find the longest common substring of sequences
+
+// `X[0…m-1]` and `Y[0…n-1]`
+string LCS(string X, string Y, int m, int n)
+{
+	int maxlen = 0;         // stores the max length of LCS
+	int endingIndex = m;    // stores the ending index of LCS in `X`
+
+	// `lookup[i][j]` stores the length of LCS of substring
+	// `X[0…i-1]`, `Y[0…j-1]`
+
+	int lookup[m + 1][n + 1];
+
+	// initialize all cells of the lookup table to 0
+	memset(lookup, 0, sizeof(lookup));
+
+	// fill the lookup table in a bottom-up manner
+
+	for (int i = 1; i <= m; i++)
+	{
+		for (int j = 1; j <= n; j++)
+		{
+			// if the current character of `X` and `Y` matches
+
+			if (X[i - 1] == Y[j - 1])
+			{
+				lookup[i][j] = lookup[i - 1][j - 1] + 1;
+
+				// update the maximum length and ending index
+
+				if (lookup[i][j] > maxlen)
+				{
+					maxlen = lookup[i][j];
+					endingIndex = i;
+				}
+			}
+		}
+	}
+
+	// return longest common substring having length `maxlen`
+	
+	return X.substr(endingIndex - maxlen, maxlen);
+}
 
 void ans(){
-	cout << "HELLO WORLD!!"<<'\n';
-	int a = 5;
-	int b = 5;
-	cout << a + b;
-	cout << '\n';
+	
 }
 
 int main() {
@@ -127,8 +179,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t = 1;
-    // cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
+    int t;
+    cin >> t;//kono kono time e T test case er dorkar hoy na tokhon t = 1 korlei hobe;
     while(t--){
         ans();
     }
